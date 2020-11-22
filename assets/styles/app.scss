@@ -1,0 +1,12 @@
+body {
+    background-color: lightgrey;
+}
+
+$theme-colors: (
+  "primary": #d90077,
+  "secondary": lightgrey,
+  "white": white,
+  "black": black
+);
+
+@import "~bootstrap/scss/bootstrap";
