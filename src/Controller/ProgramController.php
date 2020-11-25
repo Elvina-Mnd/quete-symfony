@@ -22,13 +22,13 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", requirements={"programs"="\d+"}, name="program_list", methods={"GET"})
+     * @Route("/{id}", requirements={"id"="\d+"}, name="show", methods={"GET"})
      */
     public function show(int $id): Response
     {
         //function to get the id of the program
     return $this->render('program/show.html.twig', [
-        'program' => $program
+        'id' => $id
     ]);
     }
 }
