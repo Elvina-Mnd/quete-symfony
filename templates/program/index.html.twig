@@ -3,9 +3,9 @@
 {% block title %}Toutes les séries{% endblock %}
 
 {% block body %}
-   <h1> Toutes les séries de la table program:</h1>
+   <h1> Toutes nos séries</h1>
    {% for program in programs %}
-         <div>
+         <div class="container">
             <h2> {{ loop.index }} / {{ program.title }} - Catégorie: {{ program.category.name }}</h2>
             <img src="{{ program.poster }}" alt="{{ program.title }}" width="20%">
             <p>{{ program.summary }}</p>
