@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes les séries{% endblock %}
+{% block title %}- wildprograms{% endblock %}
 
 {% block body %}
-   <h1> Toutes nos séries</h1>
-   {% for program in programs %}
-         <div class="container">
-            <h2> {{ loop.index }} / {{ program.title }} - Catégorie: {{ program.category.name }}</h2>
-            <img src="{{ program.poster }}" alt="{{ program.title }}" width="20%">
-            <p>{{ program.summary }}</p>
-            <a href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
-         </div>
-      {% else %}
-         Aucune série trouvée.
-   {% endfor %}
 
-   <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+<h1 class="text-center">Programs </h1>
+<h3 class="caption text-center">All our wildprograms only for you !</h3>
 
+<div class="container main-content-programs">
+<div>
+	<div class="container mt-5">
+		<div class="row">
+			{% for program in programs %}
+				<div class="col-lg-3 col-md-6 col-sm-12">
+					<div class="card">
+						<img src="{{ program.poster }}" class="card-img-top" alt="{{ program.title }}">
+						<div class="card-body text-center">
+							<h5 class="card-title primary">{{ loop.index }}
+								/
+								{{ program.title }}
+								- Category: 
+								{{ program.category.name }}</h5>
+							<p class="card-text">{{ program.summary}}</p>
+							<a href="{{ path("program_show", { id: program.id }) }}" class="btn btn-primary">Voir la fiche</a>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				No program found.
+			{% endfor %}
+		</div>
+	</div>
+</div></div><a href="{{ path('app_index') }}">Back to the homepage</a>
+</div>
 {% endblock %}
