@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}New Program{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1 class="text-center">Add a new program !</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type='submit' value='Add program'>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

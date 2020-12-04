@@ -8,6 +8,9 @@
 <h3 class="caption text-center">All our wildprograms only for you !</h3>
 
 <div class="container main-content-programs">
+<div class="text-right">
+	<a href="{{ path('program_new') }}" class="btn btn-primary btn-sm">Create a new program</a>
+</div>
 <div>
 	<div class="container mt-5">
 		<div class="row">
@@ -22,7 +25,7 @@
 								- Category: 
 								{{ program.category.name }}</h5>
 							<p class="card-text">{{ program.summary}}</p>
-							<a href="{{ path("program_show", { id: program.id }) }}" class="btn btn-primary">Voir la fiche</a>
+							<a href="{{ path("program_show", { id: program.id }) }}" class="btn btn-primary">See the details</a>
 						</div>
 					</div>
 				</div>
@@ -32,5 +35,6 @@
 		</div>
 	</div>
 </div></div><a href="{{ path('app_index') }}">Back to the homepage</a>
+
 </div>
 {% endblock %}
