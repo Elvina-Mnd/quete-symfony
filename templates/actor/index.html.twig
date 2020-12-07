@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actors{% endblock %}
+
+{% block body %}
+<div class="container main-content-programs">
+    <h1 class="text-center">All our actors</h1>
+
+    {% for actor in actors %}
+        <div>
+            <a href="{{ path("actor_show", { id: actor.id }) }}">{{ actor.name }}</a><li>
+        </div>
+    {% else %}
+        No category found.
+    {% endfor %}
+        <div class="text-center">
+            <a href="{{ path('app_index') }}" class="btn btn-primary">Back to the homepage</a>
+        </div>
+</div>
+{% endblock %}

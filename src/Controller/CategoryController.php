@@ -1,5 +1,4 @@
 <?php
-// src/Controller/CategoryController.php
 namespace App\Controller;
 
 use App\Entity\Category;

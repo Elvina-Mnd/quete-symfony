@@ -4,11 +4,11 @@
 {% block body %}
 
     <div class="container">
-        <h1 class="mt-0">Episode{{ episode.number }} de la série {{ program.title }}</h1>
-            <p>Titre: {{ episode.title }}</p>
-            <p>Saison {{season.number}} <p>
+        <h1 class="mt-0">Episode {{ episode.number }} of the program {{ program.title }}</h1>
+            <p>Title: {{ episode.title }}</p>
+            <p>Season {{season.number}} <p>
             <p>Synopsis:</br> {{episode.synopsis}} <p>
-            <a href="{{ path('program_show', {'id': program.id}) }}">Retour à la série</a>
+            <a href="{{ path('program_show', {'id': program.id}) }}">Back to the program</a>
     </div>
     
 
