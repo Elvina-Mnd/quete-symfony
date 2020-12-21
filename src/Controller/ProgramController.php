@@ -5,13 +5,17 @@ namespace App\Controller;
 use App\Entity\Season;
 use App\Entity\Episode;
 use App\Entity\Program;
+use App\Entity\Category;
 use App\Service\Slugify;
 use App\Form\ProgramType;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 /**
 * @Route("/programs", name="program_")
@@ -39,7 +43,7 @@ class ProgramController extends AbstractController
      *
      * @Route("/new", name="new")
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -55,6 +59,12 @@ class ProgramController extends AbstractController
             $programManager->persist($program);
             // Flush the persisted object
             $programManager->flush();
+            $email = (new TemplatedEmail())
+                ->from($this->getParameter('mailer_from'))
+                ->to('mendy.elvina@gmail.com')
+                ->subject('A new program has just been published !')
+                ->html($this->renderView('emails/newprogram.html.twig', ['program'=>$program]));
+                $mailer->send($email);
             // Finally redirect to categories list
             return $this->redirectToRoute('program_index');
         }

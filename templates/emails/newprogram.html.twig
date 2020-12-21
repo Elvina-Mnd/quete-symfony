@@ -1,0 +1,27 @@
+{% extends "emailbase.html.twig" %}
+
+{% block body %}
+    {% apply inky_to_html %}
+    <wrapper class="header">
+        <container>
+            <row class="collapse">
+                <columns small="6" valign="middle">
+                    <img src="https://zupimages.net/up/20/52/a2ox.png">
+                </columns>
+                <columns small="6" valign="middle">
+                </columns>
+            </row>
+        </container>
+    </wrapper>
+    <container>
+        <spacer size="16"></spacer>
+            <row>
+                <columns> 
+                    <h1>Hi !</h1>
+                    <p class="lead">This program {{program.title}} has been added to our list.</p>
+                    <p>Thank you for your participation !</p>
+                </columns>
+            </row>
+    </container>
+    {% endapply %}
+{% endblock %}

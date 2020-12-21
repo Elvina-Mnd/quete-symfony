@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      "title",
  *      message="This program already exists"
  * )
- * @Assert\EnableAutoMapping()
  */
 class Program
 {

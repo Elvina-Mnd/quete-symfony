@@ -15,3 +15,5 @@ Quest 15: https://www.loom.com/share/cc3873d974ed4cc7bde1059c2192ba2b
 Quest 16: https://www.loom.com/share/2b6f262508e84d10a2d1a2eb63660e64
 
 Quest 17: https://www.loom.com/share/042b58c1dd7f4cdbb7b2042623e06bbe
+
+Quest 18: https://www.loom.com/share/a99f3b0cd18846f3b04766fa3e2a6694

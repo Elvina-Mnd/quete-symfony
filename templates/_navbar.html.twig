@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand-primary" href="/">Wild Series</a>
+  <a class="navbar-brand-primary" href="/"><img src="{{ asset('build/logowildseries.png') }}" alt="wildserielogo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,8 +15,19 @@
       <li class="nav-item">
         <a class="nav-link" href="/actor/">Actors</a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="#"><i class="far fa-user"></i></a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Actions
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{path('program_index')}}">Programs</a>
+          <a class="dropdown-item" href="{{path('episode_index')}}">Episodes</a>
+          <a class="dropdown-item" href="{{path('season_index')}}">Season</a>
+          <a class="dropdown-item" href="#">Actors</a>
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-user"></i></a>
+      </li>
       </li>
     </ul>
   </div>
