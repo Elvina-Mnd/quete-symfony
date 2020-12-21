@@ -25,7 +25,7 @@
 								- Category: 
 								{{ program.category.name }}</h5>
 							<p class="card-text">{{ program.summary}}</p>
-							<a href="{{ path("program_show", { id: program.id }) }}" class="btn btn-primary">See the details</a>
+							<a href="{{ path("program_show", {  slug: program.slug }) }}" class="btn btn-primary">See the details</a>
 						</div>
 					</div>
 				</div>

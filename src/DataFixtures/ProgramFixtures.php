@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Program;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -10,6 +11,13 @@ use Faker;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
+    private $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+    
     const PROGRAMS = [
         'The Walking Dead' => [
             'summary' => 'Sheriff Deputy Rick Grimes wakes up from a coma to learn the world is in ruins and must lead a group of survivors to stay alive.',
@@ -49,7 +57,9 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $i = 0;
             foreach (self::PROGRAMS as $title => $data) {  
                 $program = new Program();  
-                $program->setTitle($title);  
+                $program->setTitle($title);
+                $title = $this->slugify->generate($program->getTitle());
+                $program->setSlug($title);  
                 $program->setSummary($data['summary']);  
                 $program->setPoster($faker->imageUrl(500,400));
                 $manager->persist($program);  

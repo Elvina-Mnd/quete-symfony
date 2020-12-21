@@ -11,7 +11,7 @@
                     <a href="{{ path("program_episode_show", {"programId": program.id, "seasonId": season.id, "episodeId": episode.id })}}">{{episode.number}}- {{episode.title}}</a>
                 </div>
             {% endfor %}
-            <a href="{{ path('program_show', {'id': program.id}) }}" class="btn btn-primary">Back</a>
+            <a href="{{ path('program_show', { slug: program.slug }) }}" class="btn btn-primary">Back</a>
     </div>
     
 

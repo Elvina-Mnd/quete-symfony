@@ -8,7 +8,7 @@
             <p>Title: {{ episode.title }}</p>
             <p>Season {{season.number}} <p>
             <p>Synopsis:</br> {{episode.synopsis}} <p>
-            <a href="{{ path('program_show', {'id': program.id}) }}">Back to the program</a>
+            <a href="{{ path('program_show', { slug: program.slug}) }}">Back to the program</a>
     </div>
     
 

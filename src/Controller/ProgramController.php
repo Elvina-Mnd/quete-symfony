@@ -2,16 +2,16 @@
 // src/Controller/ProgramController.php
 namespace App\Controller;
 
-use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Program;
+use App\Service\Slugify;
+use App\Form\ProgramType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Form\ProgramType;
 
 /**
 * @Route("/programs", name="program_")
@@ -39,7 +39,7 @@ class ProgramController extends AbstractController
      *
      * @Route("/new", name="new")
      */
-    public function new(Request $request) : Response
+    public function new(Request $request, Slugify $slugify) : Response
     {
         // Create a new Category Object
         $program = new Program();
@@ -49,6 +49,8 @@ class ProgramController extends AbstractController
         // Was the form submitted ?
         if ($form->isSubmitted() && $form->isValid()) {
             $programManager = $this->getDoctrine()->getManager();
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             // Persist Category Object
             $programManager->persist($program);
             // Flush the persisted object
@@ -62,7 +64,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", requirements={"id"="\d+"}, name="show", methods={"GET"})
+     * @Route("/{slug}", name="show", methods={"GET"})
      * @return Response
      */
     public function show(Program $program): Response
