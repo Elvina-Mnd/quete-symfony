@@ -10,6 +10,40 @@
             <p>Synopsis:</br> {{episode.synopsis}} <p>
             <a href="{{ path('program_show', { slug: program.slug}) }}">Back to the program</a>
     </div>
-    
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="container leave-comment-zone">
+        <h5 class="text-center comment-title">Have you seen this episode ? Tell us here ! </h5>
+        {{ form_start(form) }}
+        {{ form_row(form.comment) }}
+        {{ form_row(form.rate) }}
+        <div class="text-center">
+            <button class="btn btn-primary">{{ button_label|default('Send comment') }}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    {% endif %}
+    {% if comments %}
+    <div class="container comments-zone">
+    <h5 class="text-center comment-title">All our comments:</h5>
+    <div class="col-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Comments</th>
+                        <th scope="col">Author</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td>{{ comment.rate }}/ 5</td>
+                            <td>{{ comment.comment }}</td>
+                            <td>{{ comment.author }}</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
