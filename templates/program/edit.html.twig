@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Program{% endblock %}
+{% block title %}Edit Program{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Add a New Program</h1>
+    <h1>Edit Program</h1>
 
     {{ include('program/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('program_index') }}">Back to list</a>
-</div>
+
 {% endblock %}
