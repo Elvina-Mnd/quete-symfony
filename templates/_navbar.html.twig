@@ -28,11 +28,14 @@
 
       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-user"></i> My Account</a>
+      </li>
+      <li class="nav-item">
           <a class="nav-link" href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt"></i></a>
       </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{path('app_login')}}"><i class="far fa-user"></i></a>
+          <a class="nav-link" href="{{path('app_login')}}"><i class="far fa-user"></i> Sign in/Register</a>
       </li>
       {% endif %}
       </li>
