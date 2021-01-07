@@ -10,8 +10,10 @@ use App\Entity\Category;
 use App\Service\Slugify;
 use App\Form\CommentType;
 use App\Form\ProgramType;
+use App\Form\SearchProgramType;
 use Symfony\Component\Mime\Email;
 use App\Repository\CommentRepository;
+use App\Repository\ProgramRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -31,15 +33,26 @@ class ProgramController extends AbstractController
      * @return Response 
      */
     
-    public function index(): Response
+    public function index(Request $request, ProgramRepository $programRepository): Response
     { 
         $programs = $this->getDoctrine()
         ->getRepository(Program::class)
         ->findAll();
 
-    return $this->render('program/index.html.twig', [
-        'programs' => $programs
-    ]);
+        $form = $this->createForm(SearchProgramType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $programs = $programRepository->findLikeName($search);
+        } else {
+            $programs = $programRepository->findAll();
+        }
+
+        return $this->render('program/index.html.twig', [
+            'programs' => $programs,
+            'form' => $form->createView()
+        ]);
     }
 
     /**

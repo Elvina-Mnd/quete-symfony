@@ -11,6 +11,14 @@
 <div class="text-right">
 	<a href="{{ path('program_new') }}" class="btn btn-primary btn-sm">Create a new program</a>
 </div>
+<div class="text-left">
+	<div class="container">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button class="btn btn-primary btn-sm"><i class="fas fa-search"></i></button>
+		{{ form_end(form) }}
+	</div>
+</div>
 <div>
 	<div class="container mt-5">
 		<div class="row">
