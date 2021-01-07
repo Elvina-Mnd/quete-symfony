@@ -3,7 +3,10 @@
 {% block title %}Season index{% endblock %}
 
 {% block body %}
-    <h1>Season index</h1>
+<div class="text-right">
+	<a href="{{ path('season_new') }}" class="btn btn-primary btn-sm">Create a new season</a>
+</div>
+    <h1>All the seasons</h1>
 
     <table class="table">
         <thead>

@@ -50,6 +50,7 @@ class CategoryController extends AbstractController
             // Flush the persisted object
             $categoryManager->flush();
             // Finally redirect to categories list
+            $this->addFlash('success', 'This category has been created !');
             return $this->redirectToRoute('category_index');
         }
         return $this->render('category/new.html.twig', [

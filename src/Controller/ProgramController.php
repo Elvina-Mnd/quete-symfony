@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -33,7 +34,7 @@ class ProgramController extends AbstractController
      * @return Response 
      */
     
-    public function index(Request $request, ProgramRepository $programRepository): Response
+    public function index(Request $request, ProgramRepository $programRepository, SessionInterface $session): Response
     { 
         $programs = $this->getDoctrine()
         ->getRepository(Program::class)
@@ -83,6 +84,8 @@ class ProgramController extends AbstractController
                 ->subject('A new program has just been published !')
                 ->html($this->renderView('emails/newprogram.html.twig', ['program'=>$program]));
                 $mailer->send($email);
+            $this->addFlash('success', 'This program has been created !');
+
             // Finally redirect to categories list
             return $this->redirectToRoute('program_index');
         }
@@ -114,7 +117,7 @@ class ProgramController extends AbstractController
     /**
      * @Route("/{slug}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Program $program): Response
+    public function edit(Request $request, Program $program, MailerInterface $mailer): Response
     {
         // Check wether the logged in user is the owner of the program
         if (!($this->getUser() == $program->getOwner())) {
@@ -127,7 +130,7 @@ class ProgramController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'This program has been updated !');
             return $this->redirectToRoute('program_index');
         }
 
@@ -204,6 +207,7 @@ class ProgramController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($comment);
             $entityManager->flush();
+            $this->addFlash('danger', 'This comment has been deleted');
         }
 
         return $this->redirect($request->server->get('HTTP_REFERER'));

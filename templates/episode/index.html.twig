@@ -3,8 +3,10 @@
 {% block title %}Episode index{% endblock %}
 
 {% block body %}
-    <h1>Episode index</h1>
-
+    <h1>All the episodes</h1>
+<div class="text-right">
+	<a href="{{ path('episode_new') }}" class="btn btn-primary btn-sm">Create a new episode</a>
+</div>
     <table class="table">
         <thead>
             <tr>
